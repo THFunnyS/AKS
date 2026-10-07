@@ -21,8 +21,8 @@ public class Customer {
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @OneToMany(mappedBy = "Customer")
-    private List<CustomOrder> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerOrder> orders = new ArrayList<>();
 
     public Customer() {}
 
@@ -42,7 +42,7 @@ public class Customer {
         return phone;
     }
 
-    public List<CustomOrder> getOrders() {
+    public List<CustomerOrder> getOrders() {
         return orders;
     }
 
@@ -62,7 +62,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public void setOrders(List<CustomOrder> orders) {
+    public void setOrders(List<CustomerOrder> orders) {
         this.orders = orders;
     }
 }

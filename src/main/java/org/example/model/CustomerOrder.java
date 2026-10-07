@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Orders")
-public class CustomOrder {
+public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +24,8 @@ public class CustomOrder {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    public CustomerOrder() {}
 
     public Long getId() {
         return id;

@@ -1,0 +1,7 @@
+org\example\Main.class
+org\example\model\Customer.class
+org\example\service\CustomerService.class
+org\example\model\CustomerOrder.class
+org\example\service\OrderService.class
+org\example\web\OrdersServlet.class
+org\example\web\CustomerServlet.class
