@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${order.id == null ? 'Новый заказ' : 'Редактирование заказа'}">
+        Заказ
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            margin-right: 15px;
+        }
+
+        .form-group {
+            margin-top: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .button, button {
+            display: inline-block;
+            padding: 10px 14px;
+            margin-top: 20px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            background: #f5f5f5;
+            color: #222;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .message {
+            padding: 12px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="${order.id == null ? 'Добавление заказа' : 'Редактирование заказа'}">
+    Заказ
+</h1>
+
+<nav>
+    <a th:href="@{/customers}">Покупатели</a>
+    <a th:href="@{/orders}">Заказы</a>
+</nav>
+
+<div th:if="${errorMessage}" class="message"
+     th:text="${errorMessage}"></div>
+
+<form th:object="${order}"
+      th:action="${order.id == null}
+          ? @{/orders/create}
+          : @{/orders/{id}/update(id=${order.id})}"
+      method="post">
+
+    <div class="form-group">
+        <label for="orderDate">Дата заказа</label>
+        <input type="date"
+               id="orderDate"
+               th:field="*{orderDate}">
+    </div>
+
+    <div class="form-group">
+        <label for="totalSum">Сумма *</label>
+        <input type="number"
+               id="totalSum"
+               th:field="*{totalSum}"
+               min="0.01"
+               step="0.01"
+               required>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Статус</label>
+        <input type="text"
+               id="status"
+               th:field="*{status}"
+               maxlength="30"
+               placeholder="not ready">
+    </div>
+
+    <div class="form-group">
+        <label for="customerId">Покупатель</label>
+        <select id="customerId" th:field="*{customerId}">
+            <option value="">Не указан</option>
+            <option th:each="customer : ${customers}"
+                    th:value="${customer.id}"
+                    th:text="${customer.name + ' (ID: ' + customer.id + ')'}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit"
+            th:text="${order.id == null ? 'Создать' : 'Сохранить'}">
+        Сохранить
+    </button>
+
+    <a class="button" th:href="@{/orders}">Отмена</a>
+</form>
+
+</body>
+</html>
