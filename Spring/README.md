@@ -19,7 +19,7 @@
 
 ## 2 Структура проекта
 
-Основной код приложения находится в каталоге `src/main/java`, HTML-шаблоны — в `src/main/resources/templates`.
+Основной код приложения находится в каталоге `aks-spring/src/main/java`, HTML-шаблоны — в `src/main/resources/templates`.
 
 Основные пакеты:
 
@@ -101,7 +101,7 @@ Customer 1 ───────── * CustomerOrder
 
 Приложение использует PostgreSQL.
 
-Параметры подключения указываются в файле `src/main/resources/application.properties`.
+Параметры подключения указываются в файле `aks-spring/src/main/resources/application.properties`.
 
 Пример конфигурации:
 
